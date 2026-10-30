@@ -1,0 +1,4 @@
+interface:
+  display_name: "Advisor Topic & RP"
+  short_description: "Select a feasible topic and write a source-verified full RP"
+  default_prompt: "Use $advisor-topic-rp. If I provide an advisor link, align the topic with that advisor; otherwise infer a provisional research direction from my interests and CV. First confirm whether I want an English or Chinese RP, then verify the literature and data sources, compare feasible topics, and write the complete seven-section proposal with real links."
