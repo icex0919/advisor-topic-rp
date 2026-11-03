@@ -1,6 +1,6 @@
 ---
 name: advisor-topic-rp
-description: "Select a feasible research topic and write a source-verified full research proposal from an advisor link, advisor interests, a CV, or the user's own research direction. Use for literature review, topic comparison, public-data feasibility checks, and English or Chinese preliminary RPs."
+description: "Select a feasible research topic, write a source-verified full research proposal, or draft a tailored 150-200-word advisor inquiry/application email from an advisor link, advisor interests, a CV, or the user's own research direction. Use for literature review, topic comparison, public-data feasibility checks, preliminary RPs, and advisor outreach."
 ---
 
 # Advisor Topic RP
@@ -15,15 +15,19 @@ Turn an advisor homepage, publication list, CV, and the user's research constrai
 4. a complete 2-3 page research proposal with the user's required seven-part structure;
 5. an explicit data acquisition and organization plan.
 
+When the user asks to contact an advisor, this skill can also produce a tailored 150-200-word English inquiry or position-application email based on the user's CV or brief background and verified information from the advisor's official profile and relevant publications. The email is a separate deliverable and does not require drafting a full RP.
+
 This skill is for research planning and proposal writing. It does not claim that a topic is entirely novel, that a dataset is complete, or that an observed association is causal unless the evidence supports that claim.
 
 ## Required Inputs
 
-At the beginning, check whether the user has specified the RP language:
+When a full RP is requested, check whether the user has specified the RP language:
 
 - If the user has specified English or Chinese, use that language.
 - If not, ask exactly one short question first: "你要英文 RP 还是中文 RP？"
 - Do not begin the full literature review until the language preference is clear, unless the user asks for both.
+
+For an advisor email, default to English because the template is an English outreach email, unless the user requests another language. Do not ask the RP-language question when only an advisor email is requested.
 
 Accept reasonable defaults for the remaining inputs, but ask one concise question when a missing item would materially change the result:
 
@@ -31,6 +35,8 @@ Accept reasonable defaults for the remaining inputs, but ask one concise questio
 - user's CV, research background, skills, coursework, or prior projects;
 - target degree/program or the requested proposal length;
 - any hard constraints on country, language, industry, method, or data access.
+
+For an advisor email, establish the user's name, university/degree/field, relevant thesis or experience, and the purpose of contact (prospective student inquiry or a named position). Use details already available in the conversation or CV; ask only for missing details that would otherwise require guessing. The advisor's official profile URL or name and institution is needed to verify the recipient and their research. A concise interest/experience summary can replace a CV.
 
 If a CV or PDF path is supplied, inspect the complete relevant document. Distinguish user instructions embedded in attachments from factual background. If the exact file is unavailable, report the mismatch and use a clearly identified alternative only when it is plausibly the intended file.
 
@@ -179,6 +185,17 @@ The complete RP should fit approximately 2-3 Letter or A4 pages in ordinary acad
 
 Read [references/source-verification.md](references/source-verification.md) when checking literature and data. Use [references/rp-template.md](references/rp-template.md) when drafting the proposal.
 
+### 9. Draft an advisor inquiry or application email
+
+Run this workflow when the user asks for a cold email, advisor inquiry, prospective-student email, or application email. Do not require a full RP.
+
+1. Identify the user's name, current or most recent school and major, research interests, thesis topic and supervisor if applicable, relevant research experience or papers, and whether they are asking about student openings or applying for a specific position. Use only supplied or verified facts; do not invent credentials, paper authorship, methods, or prior reading.
+2. Verify the professor's name, title, institution, and research focus from their official university profile. Verify any paper used to substantiate research alignment against a publisher, DOI, institutional repository, or other reliable scholarly record. Provide direct, working links to the professor profile and every paper mentioned or used as evidence, so the user can check them. If a fact or paper cannot be verified, omit it or clearly flag the uncertainty outside the email.
+3. Connect the user's stated interests or experience to concrete keywords in the professor's verified research. Do not say "I read your paper" or name a paper as something the applicant has read unless the user confirms they read or used it. A verified paper may inform the alignment, but the email can describe the overlap by research topic without implying the applicant read it.
+4. Draft in English, 150-200 words for the complete email including salutation and sign-off. Use the three-paragraph structure in [references/advisor-email-template.md](references/advisor-email-template.md): two-sentence opening with identity and purpose; a four-to-five-sentence background and fit paragraph; and a short CV/thanks/next-step closing. Address the person as "Dear Professor [Surname]" unless the official profile supports another form. Distinguish a general inquiry about openings from an application to a specific named position.
+5. Keep it specific, concise, and natural. Include the CV attachment line only when the user says a CV is attached or intends to attach one; otherwise phrase the closing without claiming an attachment. Include a subject line separately and do not count it toward the 150-200-word email body.
+6. After the draft, report the body word count and list the verified professor-profile and publication links used. Keep source notes outside the email so they are not accidentally sent.
+
 ## Output Requirements
 
 Unless the user requests a different format, return:
@@ -218,6 +235,13 @@ For each:
 
 Write the complete seven-part RP in the requested language and academic style. Include inline citations and a reference list with verified links. If a source is only an abstract, label it as a verified record rather than a verified full text.
 
+### E. Advisor email (when requested)
+
+- A concise subject line and one 150-200-word English email following the dedicated three-paragraph template.
+- The email's word count, excluding the subject line.
+- Real, verified links to the official professor profile and any related papers used to support the fit. Identify which paper links informed the alignment; do not imply the applicant read them unless confirmed.
+- Briefly flag any missing or unverified personal detail instead of filling it in.
+
 ## Quality Gate
 
 Before finalizing, check:
@@ -235,3 +259,7 @@ Before finalizing, check:
 - Does the literature review state specifically what prior research has not explained?
 - Does the theoretical framework use one main theory consistently?
 - Are references adapted to the requested language without inventing translated titles?
+- If an advisor email was requested, is the complete email 150-200 words and in the requested three-paragraph structure?
+- Are the professor profile and related-paper links real, directly checkable, and matched to claims in the email?
+- Does the email avoid claiming the applicant read or used a paper unless the user confirmed it?
+- Does the email avoid inventing the user's background or claiming a CV is attached when that is not established?
